@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Test</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="jquery.csv.min.js"></script>
+  <script>
+    $(function() {
+      $.get('texts.csv', function(data) {
+        let csv = $.csv.toArrays(data);
+        let insert = '';
+
+        $(csv).each(function(index) {
+          if (this[0] && index != 0) {
+            insert += '<li>' + this[1] + '</li>';
+          }
+        });
+
+        $('.list-in').append(insert);
+      }, 'text');
+    });
+  </script>
+  <style>
+    body {
+      margin: 0;
+      background: #333;
+      font-family: "Yu Gothic";
+      font-size: 14px;
+      color: #fff;
+    }
+    #button {
+      width: 40px;
+      height: 20px;
+      background: #09c;
+      line-height: 20px;
+      font-size: 12px;
+      text-align: center;
+      margin-left: 10px;
+    }
+    .list-in {
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+  <ul class="list-in"></ul>
+  <div id="button"></div>
+</body>
+</html>
